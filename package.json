@@ -1,0 +1,17 @@
+{
+  "name": "fix-dual-cjs-esm-dep",
+  "description": "Used to fix and patch dependencies which export CJS files with ESM types. Run `pnpm patch`, then run this on the folder that pnpm gives you. See https://github.com/arethetypeswrong/arethetypeswrong.github.io/blob/main/docs/problems/FalseESM.md for more information on why this exists.",
+  "module": "index.ts",
+  "type": "module",
+  "main": "src/main.ts",
+  "dependencies": {
+    "zod": "3.24.1"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/core": "0.17.3",
+    "@types/bun": "1.1.16"
+  },
+  "peerDependencies": {
+    "typescript": ">=5.0"
+  }
+}
