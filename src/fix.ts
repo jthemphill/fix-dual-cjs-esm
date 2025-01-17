@@ -158,12 +158,24 @@ export function fixCommonJsTypes(
       },
     });
 
+    let importConfig = undefined;
+    if (typeof exportConfig.import === "object") {
+      importConfig = exportConfig.import;
+    } else if (typeof exportConfig.import === "string") {
+      importConfig = {
+        types: requireTypesRelPath,
+        default: exportConfig.import,
+      };
+    }
+
     newExports.set(pathToExport, {
       ...exportConfig,
       require: {
         types: cjsRequireTypesRelPath,
         default: cjsRequireImplRelPath,
       },
+      import: importConfig,
+      types: undefined,
     });
   }
 

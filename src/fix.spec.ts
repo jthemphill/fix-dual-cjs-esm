@@ -22,8 +22,10 @@ const PACKAGE_JSON_FIXED = {
   type: "module",
   exports: {
     ".": {
-      types: "./types/index.d.ts",
-      import: "./esm/index.js",
+      import: {
+        types: "./types/index.d.ts",
+        default: "./esm/index.js",
+      },
       require: {
         types: "./types/index.d.cts",
         default: "./cjs/index.cjs",
