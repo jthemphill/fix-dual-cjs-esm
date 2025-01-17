@@ -14,8 +14,12 @@ async function runAction(action: Action): Promise<void> {
       const dependencyFileContents = new Map<string, string>();
       await Promise.all(
         action.dependencyFilePaths.map(async (path) => {
-          const pathContents = await fs.readFile(path, "utf8");
-          dependencyFileContents.set(path, pathContents);
+          try {
+            const pathContents = await fs.readFile(path, "utf8");
+            dependencyFileContents.set(path, pathContents);
+          } catch (error) {
+            console.error(`Failed to read a file from ${path}: ${error}`);
+          }
         })
       );
       const contents = action.generateContents(dependencyFileContents);
